@@ -2,7 +2,7 @@
 a wip decomp of chameleon twist (1997)
 currently jp only, but tbf literally every version is basically the same so lol
 ## HOW TO DO
-** HAVE WSL2**
+**HAVE WSL2**
 
 if you don't, literally google it and microsoft has a big ass tutorial for it
 
