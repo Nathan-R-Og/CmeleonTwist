@@ -29,9 +29,9 @@ CC_OLD = tools/ido_recomp/linux/5.3/cc
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
-LDFLAGS = -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/$(ROM_NAME).map --no-check-sections
+LDFLAGS = -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/$(ROM_NAME).map --no-check-sections
 
-OPTFLAGS := -O2
+OPTFLAGS := -O2 -mips2
 
 ######################## Targets #############################
 
@@ -46,7 +46,7 @@ LD_SCRIPT = chameleontwist.ld
 default: all
 
 
-all: $(BUILD_DIR) $(ROM_NAME).z64 verify
+all: $(BUILD_DIR) $(ROM_NAME).z64 # verify
 
 clean:
 	rm -rf $(BUILD_DIR) $(ASM_DIRS) $(ASSET_DIR) 
@@ -93,7 +93,7 @@ $(BUILD_DIR)/$(ROM_NAME).bin: $(BUILD_DIR)/$(ROM_NAME).elf
 $(ROM_NAME).z64: $(BUILD_DIR)/$(ROM_NAME).bin
 	@cp $< $@
 
-verify: $(ROM_NAME).z64
-	md5sum -c checksum.md5
+#verify: $(ROM_NAME).z64
+#	md5sum -c checksum.md5
 
 .PHONY: all clean default split setup
