@@ -1,3 +1,20 @@
+ifneq ($(findstring MINGW,$(shell uname)),)
+  WINDOWS := 1
+endif
+ifneq ($(findstring MSYS,$(shell uname)),)
+  WINDOWS := 1
+endif
+
+# If 0, tells the console to chill out. (Quiets the make process.)
+VERBOSE ?= 0
+
+# If MAPGENFLAG set to 1, tells LDFLAGS to generate a mapfile, which makes linking take several minutes.
+MAPGENFLAG ?= 0
+
+ifeq ($(VERBOSE),0)
+  QUIET := @
+endif
+
 BUILD_DIR = build
 ROM_NAME = chameleontwist
 ASM_DIRS := asm
@@ -74,15 +91,9 @@ $(BUILD_DIR)/%.s.o: %.s
 $(BUILD_DIR)/%.bin.o: %.bin
 	$(LD) -r -b binary -o $@ $<
 
-	
-
-	
-
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	@mkdir -p $(shell dirname $@)
 	cpp -P -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
-
-	
 
 $(BUILD_DIR)/$(ROM_NAME).elf: $(O_FILES) $(LD_SCRIPT)
 	$(LD) $(LDFLAGS) -o $@
@@ -93,7 +104,7 @@ $(BUILD_DIR)/$(ROM_NAME).bin: $(BUILD_DIR)/$(ROM_NAME).elf
 $(ROM_NAME).z64: $(BUILD_DIR)/$(ROM_NAME).bin
 	@cp $< $@
 
-#verify: $(ROM_NAME).z64
-#	md5sum -c checksum.md5
+verify: $(ROM_NAME).z64
+	sha1sum -c checksum.sha1
 
-.PHONY: all clean default split setup
+.PHONY: all clean default split setup verify
