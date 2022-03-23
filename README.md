@@ -6,6 +6,8 @@ currently jp only, but tbf literally every version is basically the same so lol
 
 if you don't, literally google it and microsoft has a big ass tutorial for it
 
+go ahead and `cd` into where you wanna go. then
+
 - `git clone --recursive <this link>`
 
 ^ to get that juicy goodness
