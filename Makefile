@@ -103,8 +103,9 @@ $(BUILD_DIR)/$(ROM_NAME).bin: $(BUILD_DIR)/$(ROM_NAME).elf
 
 $(ROM_NAME).z64: $(BUILD_DIR)/$(ROM_NAME).bin
 	@cp $< $@
+	sha1sum $(ROM NAME) -c checksum.sha1
 
 verify: $(ROM_NAME).z64
-	sha1sum -c checksum.sha1
+	sha1sum $(ROM NAME) -c checksum.sha1
 
 .PHONY: all clean default split setup verify
