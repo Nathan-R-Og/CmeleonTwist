@@ -22,14 +22,14 @@ go ahead and `cd` into where you wanna go. then
 
 - `git clone --recursive <this link>`
 
-^ to get that juicy goodness
+to get that juicy goodness
 
 **get** a jp rom of chameleon twist, name it baserom.z64 and plop it into the new directory
 
 now, **MAKE SURE** to download some prereqs. this can be done with
-- `pip install pylibyaml`
+- `pip install -r requirements.txt`
 
-everything should be set up, `cd /mnt/whateverYourDriveIs/cmeleontwist` and run
+everything should be set up, `cd /mnt/`*whateverdirectory*`/cmeleontwist` and run
 
 - `make setup`
 
