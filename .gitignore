@@ -1,6 +1,6 @@
 **/*.z64
 *.txt
 *.ld
-*/build
-*/asm
-*/assets
+asm/
+assets/
+build/
