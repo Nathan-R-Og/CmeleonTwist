@@ -1,0 +1,6 @@
+**/*.z64
+*.txt
+*.ld
+*/build
+*/asm
+*/assets
