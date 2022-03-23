@@ -1,40 +1,26 @@
 # CmeleonTwist
-a wip decomp of chameleon twist (1997)
-currently jp only, but tbf literally every version is basically the same so lol
-## HOW TO DO
-**HAVE WSL2**
+A W.I.P Decomp of Chameleon Twist (1997) (N64) JP v1.0
+## Setup
 
-if you don't, literally google it and microsoft has a big ass tutorial for it (or just have linux i guess . . . )
+1) Follow [this](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview) tutorial to get WSL2 if you arent using linux
 
-IF(NOT HAS WSL){
+2) Run these commands 
+    - `sudo apt install make`
+    - `sudo apt install gcc`
+    - `sudo apt install python3 python3-pip`
 
- -sudo apt install make
- -sudo apt install gcc
+3) `cd` into the file location you wish to use, then
+    - `git clone --recursive https://github.com/Nathan-R-Og/CmeleonTwist.git`
 
+4) **get** a jp v1.0 rom of chameleon twist, name it baserom.z64 and move it into the root of the cloned directory
 
+5) Run this command:
+    -   `pip3 install -r requirements.txt`
 
-}
+6) In the root directory of the cloned folder run:
+    - `make setup`
+    
+    then run
+    - `make`
 
-
-go ahead and `cd` into where you wanna go. then
-
-
-
-- `git clone --recursive <this link>`
-
-to get that juicy goodness
-
-**get** a jp rom of chameleon twist, name it baserom.z64 and plop it into the new directory
-
-now, **MAKE SURE** to download some prereqs. this can be done with
-- `pip install -r requirements.txt`
-
-everything should be set up, `cd /mnt/`*whateverdirectory*`/cmeleontwist` and run
-
-- `make setup`
-
-then run
-
-- `make`
-
-if ya wanna clean it out and start over do `make clean`, i removed a bit where it removed the rom just in case so lol
+*If you need to clean it out and start over do `make clean` (this will keep the rom)*
