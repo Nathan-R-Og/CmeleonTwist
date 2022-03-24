@@ -69,7 +69,7 @@ clean:
 	rm -rf $(BUILD_DIR) $(ASM_DIRS) $(ASSET_DIR) 
 
 split: $(TOOLS)/n64splat/util/n64/Yay0decompress
-	./tools/n64splat/split.py $(ROM_NAME).yaml
+	python3 tools/n64splat/split.py $(ROM_NAME).yaml
 
 $(TOOLS)/n64splat/util/n64/Yay0decompress:
 	make -C tools/n64splat
