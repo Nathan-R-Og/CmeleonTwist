@@ -45,7 +45,7 @@ CC = tools/ido_recomp/linux/5.3/cc
 CC_OLD = tools/ido_recomp/linux/5.3/cc
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
-CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
+CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul _LANGUAGE_C
 LDFLAGS = -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/$(ROM_NAME).map --no-check-sections
 
 OPTFLAGS := -O2 -mips2
@@ -54,8 +54,12 @@ OPTFLAGS := -O2 -mips2
 
 $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(ASSET_DIR) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
 
+ASM_PROCESS = tools/asm_processor/build.py
+
 build/src/os/O1/%.o: OPTFLAGS := -O1
-build/src/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
+build/src/%.o: CC := python3 $(ASM_PROCESS) $@ $(CC) -- $(AS) $(ASFLAGS) --
+build/src/dlls/%.o: CC := python3 $(ASM_PROCESS) $@ $(CC) -- $(AS) $(ASFLAGS) --
+build/asm/%.o: ASFLAGS += -mips3 -mabi=32
 
 
 LD_SCRIPT = chameleontwist.ld
