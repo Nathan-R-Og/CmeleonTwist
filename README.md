@@ -8,6 +8,7 @@ A W.I.P Decomp of Chameleon Twist (1997) (N64) JP v1.0
     - `sudo apt install make`
     - `sudo apt install gcc`
     - `sudo apt install python3 python3-pip`
+    - `sudo apt-get install -y gcc-mips-linux-gnu`
 
 3) `cd` into the file location you wish to use, then
     - `git clone --recursive https://github.com/Nathan-R-Og/CmeleonTwist.git`
